@@ -1,0 +1,39 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pod-memory-leak-sa
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: pod-memory-leak
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '100'
+
+            # Enter the target memory in megabytes to be consumed gradually by the application pod
+            - name: TARGET_MEMORY_CONSUMPTION
+              value: '500'
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''   
+
+            ## provide the cluster runtime
+            - name: CONTAINER_RUNTIME
+              value: 'docker'   
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'              

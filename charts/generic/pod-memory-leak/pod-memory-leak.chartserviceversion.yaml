@@ -1,0 +1,42 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-memory-leak 
+  version: 0.1.0
+  annotations:
+    categories: generic
+spec:
+  displayName: pod-memory-leak 
+  categoryDescription: |
+    Pod-Memory-Leak contains chaos to consume memory resouces gradually of specified containers in Kubernetes pods.    
+    - Causes memory leak on specified application containers using memory-leak test-tool that consume memory resources gradually of the given target containers for the specified time duration.
+    - It Can test the application's resilience to memory leak and against potential slowness/unavailability of some replicas due to gradually increasing memory load
+    - The application pod should be healthy once chaos is stopped. Expectation is that service-requests should be served despite chaos.
+  keywords: 
+    - "pods" 
+    - "kubernetes" 
+    - "memory-leak" 
+    - "memory" 
+    - "exec"
+  platforms: 
+    - "Minikube" 
+    - "OpenShift"
+  maturity: alpha
+  maintainers: 
+    - name: Ojaswa Sharma 
+      email: ojaswa.sharma@ibm.com 
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: IBM Research
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links: 
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-memory-leak
+    - name: Documentation 
+      url: https://docs.litmuschaos.io/docs/getstarted/ 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-memory-leak/experiment.yaml

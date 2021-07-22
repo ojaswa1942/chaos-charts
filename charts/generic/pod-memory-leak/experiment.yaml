@@ -1,0 +1,75 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    the experiment gradually occupies upto the target memory over the specified duration. It imitates behaviour of a memory leak.
+kind: ChaosExperiment
+metadata:
+  name: pod-memory-leak
+  labels:
+    name: pod-memory-leak
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups: 
+          - "" 
+          - "batch" 
+          - "apps" 
+          - "litmuschaos.io"
+        resources: 
+          - "jobs" 
+          - "pods" 
+          - "pods/log" 
+          - "events" 
+          - "pods/exec" 
+          - "chaosengines" 
+          - "chaosexperiments" 
+          - "chaosresults"
+        verbs: 
+          - "create" 
+          - "list" 
+          - "get" 
+          - "patch" 
+          - "update" 
+          - "delete" 
+          - "deletecollection"
+    # image: "litmuschaos/go-runner:latest"
+    image: "ojaswa1942/litmus-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-memory-leak
+    command:
+    - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: '100' # in seconds
+
+      # Enter the amount of target memory in megabytes to be consumed gradually
+      - name: TARGET_MEMORY_CONSUMPTION
+        value: '500'
+
+      ## env var that describes the library used to execute the chaos
+      ## default: litmus. Supported values: litmus
+      - name: LIB
+        value: 'litmus'
+
+      - name: RAMP_TIME
+        value: ''
+        
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+      - name: TARGET_PODS
+        value: ''
+      
+    labels:
+      name: pod-memory-leak
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest 
