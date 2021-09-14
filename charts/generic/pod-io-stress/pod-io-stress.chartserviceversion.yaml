@@ -16,7 +16,11 @@ spec:
     - The application pod should be healthy once chaos is stopped. Expectation is that service-requests should be served despite chaos.
   keywords:
     - Kubernetes
+    - K8S
     - Memory
+    - Pod
+    - IO
+    - Stress
   platforms:
     - GKE
     - Packet(Kubeadm)
@@ -37,7 +41,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-io-stress
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/pod-io-stress/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-io-stress/
     - name: Video
       url:
   icon:

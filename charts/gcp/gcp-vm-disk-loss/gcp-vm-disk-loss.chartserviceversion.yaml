@@ -10,9 +10,8 @@ spec:
   categoryDescription: >
     Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
   keywords: 
-    - "persistent-disks" 
-    - "kubernetes" 
-    - "gcp" 
+    - "Disk" 
+    - "GCP" 
   platforms: 
     - "GCP"
   maturity: alpha
@@ -27,7 +26,7 @@ spec:
     app.kubernetes.io/version: latest
   links: 
     - name: Documentation 
-      url: https://docs.litmuschaos.io/docs/getstarted/ 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/gcp/gcp-vm-disk-loss/
   icon:
     - url: 
       mediatype: ""

@@ -16,7 +16,6 @@ spec:
     - Currently, the experiment is supported for vsphere version 6.X (Support for 7.X will be added soon)
 
   keywords:
-    - Kubernetes
     - Vmware
     - VM
   platforms:
@@ -34,7 +33,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware/vm-poweroff
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/vm-poweroff
+      url: https://litmuschaos.github.io/litmus/experiments/categories/vmware/vm-poweroff/
     - name: Video
       url:
   icon:

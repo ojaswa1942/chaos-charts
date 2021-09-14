@@ -14,6 +14,7 @@ spec:
      Kill the cstor target/Jiva controller container and check if gets created again
   keywords:
     - Kubernetes
+    - K8S
     - Storage Controller
     - OpenEBS
   platforms:
@@ -35,7 +36,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-target-container-failure
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-target-container-failure/
+      url: https://v1-docs.litmuschaos.io/docs/openebs-target-container-failure/
     - name: Video
       url:
   icon:

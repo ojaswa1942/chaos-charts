@@ -13,6 +13,7 @@ spec:
     Kill the OpenEBS NFS provisioner container and check if pods consuming the NFS PVs continue to be available and volumes are writable (RWM mode)
   keywords:
     - Kubernetes
+    - K8S
     - OpenEBS
     - NFS
   platforms:
@@ -32,7 +33,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-nfs-provisioner-kill
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-nfs-provisioner-kill/
+      url: https://v1-docs.litmuschaos.io/docs/openebs-nfs-provisioner-kill/
     - name: Video
       url:
   icon:

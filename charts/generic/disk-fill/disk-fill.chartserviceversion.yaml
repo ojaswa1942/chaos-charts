@@ -17,8 +17,9 @@ spec:
     - Tests the Ephemeral Storage Limits, to ensure those parameters are sufficient.
   keywords:
     - Kubernetes
+    - K8S
+    - Pod
     - Disk
-    - State 
   platforms:
     - GKE
     - EKS
@@ -38,7 +39,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/disk-fill
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/disk-fill/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/disk-fill/
     - name: Video
       url: https://www.youtube.com/watch?v=pbok737rUPQ
   icon:

@@ -38,9 +38,10 @@ spec:
     - pod-dns-spoof
     - pod-cpu-hog-exec
     - pod-memory-hog-exec
-
+    - pod-network-partition
   keywords:
     - Kubernetes
+    - K8S
     - Container
     - Node
     - Pod
@@ -50,8 +51,10 @@ spec:
     - Network
     - CPU
     - Memory
+    - Stress
     - Service
     - DNS
+    - Scale
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
@@ -66,7 +69,7 @@ spec:
     - name: Kubernetes Slack
       url: https://slack.kubernetes.io/
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents/#generic
   icon:
     - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
       mediatype: image/png

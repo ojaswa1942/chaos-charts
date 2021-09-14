@@ -13,10 +13,9 @@ spec:
   - gcp-vm-instance-stop
   - gcp-vm-disk-loss
   keywords: 
-    - "pods" 
-    - "kubernetes" 
-    - "disk"
-    - "gcp"
+    - "VM"
+    - "Disk"
+    - "GCP"
   maintainers: 
     - name: neelanjan00 
       email: neelanjan@chaosnative.com
@@ -27,7 +26,7 @@ spec:
     - name: GCP Website
       url: https://cloud.google.com/
     - name: Documentation 
-      url: https://docs.litmuschaos.io/docs/getstarted/ 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents/#cloud-infrastructure
     - name: Community Slack
       url: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
   icon:
