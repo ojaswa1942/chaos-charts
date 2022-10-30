@@ -21,7 +21,6 @@ spec:
     - pod-network-corruption
     - node-drain
     - node-cpu-hog
-    - disk-loss
     - disk-fill
     - node-memory-hog
     - pod-memory-hog
@@ -30,7 +29,6 @@ spec:
     - node-taint
     - docker-service-kill
     - pod-autoscaler
-    - byoc-pod-delete
     - node-io-stress
     - pod-io-stress
     - node-restart
@@ -39,6 +37,11 @@ spec:
     - pod-cpu-hog-exec
     - pod-memory-hog-exec
     - pod-network-partition
+    - pod-http-latency
+    - pod-http-status-code
+    - pod-http-modify-header
+    - pod-http-modify-body
+    - pod-http-reset-peer
   keywords:
     - Kubernetes
     - K8S
@@ -55,6 +58,7 @@ spec:
     - Service
     - DNS
     - Scale
+    - Http
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

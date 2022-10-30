@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Stops GCP VM instances and GKE nodes for a specified duration of time and later restarts them
+    Stops GCP VM instances and GKE nodes for a specified duration and later restarts them
 kind: ChaosExperiment
 metadata:
   name: gcp-vm-instance-stop
@@ -14,30 +14,35 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups: 
-          - "" 
-          - "batch"
-          - "litmuschaos.io"
-        resources: 
-          - "jobs" 
-          - "pods" 
-          - "pods/log" 
-          - "events" 
-          - "secrets" 
-          - "pods/exec" 
-          - "chaosengines" 
-          - "chaosexperiments" 
-          - "chaosresults"
-          - "nodes"
-        verbs: 
-          - "create" 
-          - "list" 
-          - "get" 
-          - "patch" 
-          - "update" 
-          - "delete" 
-          - "deletecollection"
-    image: "litmuschaos/go-runner:ci"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["secrets","configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
@@ -65,8 +70,8 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # enable or disable; shall be enabled if the target instance is a part of an auto scaling group.
-    - name: AUTO_SCALING_GROUP
+    # enable or disable; shall be set to enable if the target instances are a part of a managed instance group
+    - name: MANAGED_INSTANCE_GROUP
       value: 'disable'
     
     # Instance name of the target vm instance(s)
@@ -81,7 +86,7 @@ spec:
     # Instance zone(s) of the target vm instance(s)
     # If more than one instance is targetted, provide zone for each in the order of their 
     # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
-    - name: INSTANCE_ZONES
+    - name: ZONES
       value: ''
       
     labels:

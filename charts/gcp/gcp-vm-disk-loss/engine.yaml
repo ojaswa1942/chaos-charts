@@ -32,11 +32,9 @@ spec:
             # set the disk zone(s) as comma seperated values in the corresponding 
             # order of DISK_VOLUME_NAME  
             # eg. zone1,zone2,...
-            - name: DISK_ZONES
+            - name: ZONES
               value: ''
-            
-            # set the device name(s) as comma seperated values in the corresponding 
-            # order of DISK_VOLUME_NAME 
-            # eg. device1,device2,...
-            - name: DEVICE_NAMES
-              value: ''
+
+            # parallel or serial; determines how chaos is injected
+            - name: SEQUENCE
+              value: 'parallel'
